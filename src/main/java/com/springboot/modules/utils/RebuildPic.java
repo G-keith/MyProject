@@ -19,15 +19,15 @@ public class RebuildPic {
             // 判断是否为多张图片
             if (imgList.length > 1) {
                 // 多张
-                StringBuffer newPicture = new StringBuffer();
-                for (int i = 0; i < imgList.length; i++) {
-                    if (imgList[i] != null && !"".equals(imgList[i])) {
+                StringBuilder newPicture = new StringBuilder();
+                for (String anImgList : imgList) {
+                    if (anImgList != null && !"".equals(anImgList)) {
                         newPicture.append("|");
                         // 判断是否已经拼接了域名
-                        if (! imgList[i].startsWith(sysPath)) {
-                            newPicture.append(sysPath + imgList[i]);
+                        if (!anImgList.startsWith(sysPath)) {
+                            newPicture.append(sysPath).append(anImgList);
                         } else {
-                            newPicture.append(imgList[i]);
+                            newPicture.append(anImgList);
                         }
                     }
                 }
