@@ -1,0 +1,62 @@
+server:
+  port: 8088
+spring:
+  redis:
+    database: 0
+    host: 192.168.2.152
+    port: 6379
+    timeout: 5000
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 1ms
+        max-idle: 8
+        min-idle: 0
+##MyBatis信息
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://111.231.50.113:3306/vicmob_project
+#    data-username: root
+#    data-password: system
+#    dbcp2:
+#      initial-size: 20
+#      max-idle: 20
+#      min-idle: 10
+#      max-wait-millis: 10
+#      default-auto-commit: true
+#      min-evictable-idle-time-millis: 3600000
+ #thymeleaf
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    cache: false
+    prefix: classpath:/templates/
+ ###Mail邮箱配置
+  mail:
+    host: smtp.vicmob.cn
+    username: keith@vicmob.cn
+    password: GeMiia123
+    default-encoding: UTF-8
+
+#MyBatis配置文件
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mappers/**/*Mapper.xml
+#日志打印SQL
+logging:
+  level:
+     com.springboot.modules.project: debug
+######################监控系统配置，后续需要配置安全系统#############################
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+info:
+  app:
+    name: MySpring
+    version: v.1.0.0

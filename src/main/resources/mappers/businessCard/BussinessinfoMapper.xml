@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.modules.project.businesscardmapper.BussinessinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.springboot.modules.project.domain.Bussinessinfo" >
+    <id column="bussinessId" property="bussinessId" jdbcType="INTEGER" />
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="nickName" property="nickName" jdbcType="VARCHAR" />
+    <result column="bussinesAdddress" property="bussinesAdddress" jdbcType="VARCHAR" />
+    <result column="logoPic" property="logoPic" jdbcType="VARCHAR" />
+    <result column="corpId" property="corpId" jdbcType="VARCHAR" />
+    <result column="corpName" property="corpName" jdbcType="VARCHAR" />
+    <result column="corpType" property="corpType" jdbcType="VARCHAR" />
+    <result column="corpLogo" property="corpLogo" jdbcType="VARCHAR" />
+    <result column="corpUserMax" property="corpUserMax" jdbcType="INTEGER" />
+    <result column="corpFullname" property="corpFullname" jdbcType="VARCHAR" />
+    <result column="subjectType" property="subjectType" jdbcType="TINYINT" />
+    <result column="verifiedEndTime" property="verifiedEndTime" jdbcType="BIGINT" />
+    <result column="corpWxqrcode" property="corpWxqrcode" jdbcType="VARCHAR" />
+    <result column="corpScale" property="corpScale" jdbcType="VARCHAR" />
+    <result column="corpIndustry" property="corpIndustry" jdbcType="VARCHAR" />
+    <result column="corpSubindustry" property="corpSubindustry" jdbcType="VARCHAR" />
+    <result column="accessToken" property="accessToken" jdbcType="VARCHAR" />
+    <result column="expiresTime" property="expiresTime" jdbcType="BIGINT" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bussinessId, userId, nickName, bussinesAdddress, logoPic, corpId, corpName, corpType, 
+    corpLogo, corpUserMax, corpFullname, subjectType, verifiedEndTime, corpWxqrcode, 
+    corpScale, corpIndustry, corpSubindustry, accessToken, expiresTime, location
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bc_bussinessinfo
+  </select>
+</mapper>

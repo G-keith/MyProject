@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "spring.datasource.test.jdbc-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.test.jdbc-url."
+    },
+    {
+      "name": "spring.datasource.test.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.test.password."
+    },
+    {
+      "name": "spring.datasource.businesscard.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.businesscard.password."
+    },
+    {
+      "name": "spring.datasource.businesscard.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.businesscard.username."
+    }
+  ] }

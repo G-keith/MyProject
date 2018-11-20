@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/vue.js"></script>
+</head>
+<style type="text/css">
+    [v-clock] {
+        display: none;
+    }
+</style>
+<body>
+<div id="chat" class="content">
+    from:<input type="text" v-model="from">
+    to:<input type="text" v-model="to">
+    <div v-for="item in message">
+        <span>{{item.from}}-{{item.to}}:</span>
+        <span>{{item.msg}}</span>
+    </div>
+    <button @click="connect">连接</button>
+    <input type="text" v-model="msg">
+    <button @click="sendMessage">发送</button>
+</div>
+</body>
+<script>
+$(function () {
+    var vm = new Vue({
+        el: '#chat',
+        data: {
+            message:[],
+            msg: '',
+            from: '',
+            to: '',
+            ws: ''
+        },
+        methods: {
+            connect: function () {
+                let that = this
+                that.ws = new WebSocket("ws://192.168.2.152:8088/webSocket");
+                that.ws.onopen = function (ev) {
+                    console.log(ev)
+                    console.log("连接成功");
+                }
+                that.ws.onmessage = function (ev) {
+                    let msg = JSON.parse(ev.data)
+                    console.log(msg)
+                    that.message.push(msg)
+                }
+
+                that.ws.onclose = function (ev) {
+                    console.log("连接关闭")
+                    console.log(ev)
+                }
+                that.ws.onerror = function () {
+                    console.log('连接出错')
+                }
+            },
+            sendMessage: function () {
+                let that = this
+                let msg = {
+                    to: that.to,
+                    msg: that.msg
+                }
+                msg.from = that.from
+                that.ws.send(JSON.stringify(msg))
+                that.message.push(msg)
+            }
+        }
+    })
+})
+</script>
+</html>

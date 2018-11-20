@@ -1,0 +1,6 @@
+GET 用于获取数据。
+POST 用于添加数据。
+PUT 用于更新数据（整个对象）。
+PATCH 用于更新数据（附带对象的部分信息）。
+DELETE 用于删除数据。
+ TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();//try{}catch(){}捕获异常，手动进行回滚操作
