@@ -21,7 +21,7 @@ public class ReplaceWorld {
     /**
      * 包含的敏感词列表，包括重复项，统计次数
      */
-    public static List<String> sensitiveWordList;
+    private static List<String> sensitiveWordList;
 
     /**
      * 替换字符串中的敏感词
@@ -35,7 +35,10 @@ public class ReplaceWorld {
         for(int x=0;x < replceSize;x++){
             replaceAll.append(replceStr);
         }
-        sensitiveWordSet = new HashSet<String>();
+        /**
+         * 包含的敏感词列表，过滤掉重复项
+         */
+        Set<String> sensitiveWordSet = new HashSet<String>();
         sensitiveWordList= new ArrayList<>();
         StringBuilder buffer = new StringBuilder(str);
         HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>(world.size());
