@@ -1,6 +1,7 @@
 package com.springboot.modules.project.businesscardmapper;
 
 import com.springboot.modules.project.domain.Bussinessinfo;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  * @author keith
  * @date 2018-10-14
  */
+@Repository
 public interface BussinessinfoMapper {
 
     /**

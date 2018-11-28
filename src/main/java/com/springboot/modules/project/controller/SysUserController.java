@@ -6,6 +6,7 @@ import com.springboot.common.page.PageVO;
 import com.springboot.common.utils.MD5Util;
 import com.springboot.modules.common.ServerResponse;
 import com.springboot.modules.project.domain.SysUser;
+import com.springboot.modules.project.service.ISysUserService;
 import com.springboot.modules.project.service.impl.SysUserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,11 +30,11 @@ import java.util.Date;
 public class SysUserController {
 
 
-    private final SysUserServiceImpl sysUserServiceImpl;
+    private final ISysUserService iSysUserService;
 
     @Autowired
-    public SysUserController(SysUserServiceImpl sysUserServiceImpl) {
-        this.sysUserServiceImpl = sysUserServiceImpl;
+    public SysUserController(ISysUserService iSysUserService) {
+        this.iSysUserService = iSysUserService;
     }
 
     @ApiOperation(value = "插入用户信息", notes = "插入用户信息")
@@ -50,7 +51,7 @@ public class SysUserController {
         sysUser.setPassword(MD5Util.md5EncodeUtf8(password));
         sysUser.setName(name);
         sysUser.setCreateDate(new Date());
-        int result=  sysUserServiceImpl.insertUserInfo(sysUser);
+        int result=  iSysUserService.insertUserInfo(sysUser);
         if(result>0){
             return ServerResponse.createBySuccess(result);
         }else{
@@ -67,7 +68,7 @@ public class SysUserController {
     })
     public ServerResponse<PageVO<SysUser>> selectAll(int pageNum, int pageSize){
         Page<SysUser> page = PageHelper.startPage(pageNum, pageSize);
-        sysUserServiceImpl.selectAll();
+        iSysUserService.selectAll();
         return ServerResponse.createBySuccess(PageVO.build(page));
     }
 }

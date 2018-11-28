@@ -12,7 +12,7 @@ import java.util.Set;
 @Service("iSysRoleService")
 public class SysRoleServiceImpl implements ISysRoleService {
     @Override
-    public Set<String> findRoleNameByUserId(Integer Id) {
+    public Set<String> findRoleNameByUserId(Integer id) {
         return null;
     }
 }

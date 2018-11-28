@@ -1,8 +1,5 @@
 package com.springboot.modules.project.service.impl;
 
-import com.springboot.common.datasource.DS;
-import com.springboot.common.datasource.DataSourceContextHolder;
-import com.springboot.common.utils.DateUtils;
 import com.springboot.modules.project.domain.SysUser;
 import com.springboot.modules.project.service.ISysUserService;
 import com.springboot.modules.project.testmapper.SysUserMapper;
@@ -21,8 +18,12 @@ import java.util.Set;
 @Transactional(rollbackFor = Exception.class,readOnly = true)
 public class SysUserServiceImpl implements ISysUserService {
 
+    private final SysUserMapper sysUserMapper;
+
     @Autowired
-    private SysUserMapper sysUserMapper;
+    public SysUserServiceImpl(SysUserMapper sysUserMapper) {
+        this.sysUserMapper = sysUserMapper;
+    }
 
     @Override
     public SysUser getUserByLoginName(String loginName) {
@@ -36,7 +37,6 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    @DS()
     public int insertUserInfo(SysUser sysUser) {
         int result;
         try {
@@ -50,21 +50,15 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     @Override
-    @DS()
     public List<SysUser> selectAll() {
-        System.out.println(DataSourceContextHolder.getDB());
         List<SysUser> sysUsers;
         try{
             sysUsers= sysUserMapper.selectAll();
-            if(sysUsers.size()!=0){
-                for(SysUser sysUser:sysUsers){
-                    sysUser.setCtrateTime(DateUtils.formatDateTime(sysUser.getCreateDate()));
-                }
-            }
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException("查询所有用户信息失败");
         }
+        sysUsers.add(new SysUser());
         return sysUsers;
     }
 }

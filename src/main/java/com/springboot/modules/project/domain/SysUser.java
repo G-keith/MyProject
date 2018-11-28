@@ -1,5 +1,7 @@
 package com.springboot.modules.project.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
  * @date 2018-09-03
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class SysUser {
     private Integer id;
 
@@ -35,6 +38,7 @@ public class SysUser {
 
     private Integer loginFlag;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createDate;
 
     private String updateBy;
@@ -46,7 +50,4 @@ public class SysUser {
     private Integer delFlag;
 
     private String qrcode;
-
-    private String ctrateTime;
-
 }
